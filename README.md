@@ -1,8 +1,8 @@
 # SILOVIK (YURI) — Solana
 
-**SILOVIK (YURI)** is a Solana-based token positioned around *presence and restraint*—visible without being pushed, mentioned without being explained, present without being defended.
+**SILOVIK (YURI)** is a Solana-based token positioned around presence and restraint—visible without being pushed, mentioned without being explained, present without being defended.
 
-This repository serves as a canonical reference point for verification and project resources.
+This repository serves as a canonical reference point for verification and official project resources.
 
 ---
 
@@ -17,9 +17,9 @@ This repository serves as a canonical reference point for verification and proje
 
 ## Official Website
 
-- Website: https://www.yuricrypto.com/
+- Website: https://www.yuricrypto.com/ 
 
-> No promises. No predictions. No urgency. Verify all links independently.
+> Verify all links independently. If any page or message presents a different mint address, treat it as unofficial.
 
 ---
 
@@ -32,20 +32,13 @@ Always verify the token using the **mint address**:
 Recommended verification steps:
 1. Copy the mint address exactly as shown above.
 2. Paste it into trusted Solana explorers and analytics tools (e.g., Solscan, DEX Screener, Birdeye).
-3. Cross-check **decimals (7)** and **ticker ($YURI)** with the token view.
-
-If any page, ad, or message presents a different mint address, treat it as **unofficial**.
+3. Cross-check **decimals (7)** and **ticker ($YURI)** on the token view.
 
 ---
 
 ## Doctrine (Operating Posture)
 
 This project avoids hype mechanics and pressure-based messaging.
-
-Acceptable posture:
-- “It exists.”
-- “It’s visible.”
-- “Some will understand it.”
 
 Core principle:
 - Influence is not built by pressure. It is built by inevitability.
@@ -62,18 +55,11 @@ Core principle:
 
 ---
 
-## Brand Assets
-
-Logos and basic assets (if included in this repo) should be treated as reference materials only.
-If you use assets externally, ensure they remain consistent with the official site.
-
----
-
 ## Security Notes
 
 - Beware of impersonators and lookalike tickers.
 - Only trust links obtained from:
-  - the official website above, and
+  - the official website, and
   - this repository’s canonical mint address section.
 - Never share seed phrases or private keys.
 
@@ -83,10 +69,3 @@ If you use assets externally, ensure they remain consistent with the official si
 
 This repository is provided for informational and verification purposes only.
 Nothing here constitutes financial advice, an offer, or a solicitation.
-
----
-
-## License
-
-Specify a license for this repository (e.g., MIT) if you intend others to reuse the code/assets.
-If this repo is reference-only, state “All Rights Reserved” and restrict usage accordingly.
