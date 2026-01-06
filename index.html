@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07070a" />
+  <title>SILOVIK (YURI) — Internal Dossier</title>
+  <meta name="description" content="This is not marketing. This is positioning through presence. SILOVIK (YURI) on Solana." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui"],
+            cinzel: ["Cinzel", "ui-serif", "Georgia"],
+            mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+          },
+          colors: {
+            noir: {
+              950: "#050507",
+              900: "#07070a",
+              850: "#0b0b10",
+              800: "#0f0f16",
+              700: "#151520",
+            },
+            blood: "#d12a2a",
+            brass: "#c7a76a",
+            ash: "#b8b8c8",
+          },
+          boxShadow: {
+            noir: "0 22px 70px rgba(0,0,0,.55)",
+            insetGlow: "inset 0 1px 0 rgba(255,255,255,.08)",
+          },
+          letterSpacing: {
+            dossier: ".22em",
+            cinzel: ".08em",
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Subtle paper/noise + faint grid lines for “dossier” feel */
+    .noir-noise::before{
+      content:"";
+      position:fixed;
+      inset:-20%;
+      pointer-events:none;
+      opacity:.10;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      transform: rotate(2deg);
+      z-index: 1;
+    }
+    .noir-grid::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.06;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.35) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.35) 1px, transparent 1px);
+      background-size: 64px 64px;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body class="noir-noise noir-grid min-h-screen bg-noir-900 text-white font-sans">
+  <!-- Background vignette -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-[radial-gradient(1100px_700px_at_15%_10%,rgba(209,42,42,.10),transparent_55%),radial-gradient(1000px_700px_at_85%_15%,rgba(199,167,106,.08),transparent_60%),linear-gradient(180deg,#06060a,#07070b_35%,#050509)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(1200px_900px_at_50%_40%,transparent_55%,rgba(0,0,0,.55)),radial-gradient(900px_650px_at_50%_120%,rgba(0,0,0,.75),transparent_65%)]"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 border-b border-white/10 bg-noir-900/70 backdrop-blur">
+    <div class="mx-auto w-full max-w-6xl px-4">
+      <div class="flex items-center justify-between py-3 gap-3">
+        <a href="#top" class="flex items-center gap-3 min-w-0">
+          <div class="h-11 w-11 rounded-2xl border border-white/15 bg-white/5 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,.06)]">
+            <img src="./yuri-logo.png" alt="YURI logo" class="h-full w-full object-contain" />
+          </div>
+          <div class="min-w-0">
+            <div class="font-cinzel uppercase tracking-cinzel font-black leading-tight truncate">SILOVIK</div>
+            <div class="text-xs font-extrabold tracking-dossier text-white/65 truncate">YURI • SOLANA</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1 text-sm font-extrabold text-white/65">
+          <a class="px-3 py-2 rounded-xl hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10" href="#dossier">Dossier</a>
+          <a class="px-3 py-2 rounded-xl hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10" href="#doctrine">Doctrine</a>
+          <a class="px-3 py-2 rounded-xl hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10" href="#rules">Rules</a>
+          <a class="px-3 py-2 rounded-xl hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10" href="#verify">Verify</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="#verify" class="hidden sm:inline-flex items-center justify-center px-3 py-2 rounded-xl border border-brass/25 bg-transparent hover:bg-white/5 font-extrabold text-sm">
+            Contract
+          </a>
+          <a href="#doctrine" class="hidden sm:inline-flex items-center justify-center px-3 py-2 rounded-xl border border-blood/35 bg-blood/10 hover:bg-blood/15 font-extrabold text-sm">
+            Read
+          </a>
+
+          <button id="menuBtn"
+            class="md:hidden inline-flex items-center justify-center h-11 w-11 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 font-black"
+            aria-label="Open menu" aria-expanded="false">≡</button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="menuPanel" class="md:hidden hidden pb-4 border-t border-white/10">
+        <div class="pt-3 grid gap-2">
+          <a class="px-3 py-3 rounded-2xl border border-transparent hover:border-white/10 hover:bg-white/5 font-extrabold text-white/85" href="#dossier">Dossier</a>
+          <a class="px-3 py-3 rounded-2xl border border-transparent hover:border-white/10 hover:bg-white/5 font-extrabold text-white/85" href="#doctrine">Doctrine</a>
+          <a class="px-3 py-3 rounded-2xl border border-transparent hover:border-white/10 hover:bg-white/5 font-extrabold text-white/85" href="#rules">Rules</a>
+          <a class="px-3 py-3 rounded-2xl border border-transparent hover:border-white/10 hover:bg-white/5 font-extrabold text-white/85" href="#verify">Verify</a>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+            <a href="#verify" class="inline-flex items-center justify-center px-4 py-3 rounded-2xl border border-brass/25 hover:bg-white/5 font-extrabold">
+              Contract
+            </a>
+            <a href="#doctrine" class="inline-flex items-center justify-center px-4 py-3 rounded-2xl border border-blood/35 bg-blood/10 hover:bg-blood/15 font-extrabold">
+              Read
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="mx-auto w-full max-w-6xl px-4 relative z-10">
+    <!-- HERO DOSSIER -->
+    <section id="dossier" class="pt-6 sm:pt-10">
+      <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir overflow-hidden relative">
+        <!-- Left rail (dossier spine) -->
+        <div class="absolute inset-y-0 left-0 w-14 sm:w-16 bg-black/30 border-r border-white/10"></div>
+        <div class="absolute inset-y-0 left-0 w-14 sm:w-16 flex flex-col items-center justify-between py-5">
+          <div class="rotate-180 [writing-mode:vertical-rl] text-[10px] tracking-dossier font-extrabold text-white/55">
+            INTERNAL DOSSIER
+          </div>
+          <div class="h-2 w-2 rounded-full bg-blood shadow-[0_0_0_6px_rgba(209,42,42,.12)]"></div>
+        </div>
+
+        <div class="relative p-5 sm:p-8 pl-20 sm:pl-24">
+          <div class="flex flex-col lg:flex-row gap-6 lg:items-start">
+            <!-- Left content -->
+            <div class="flex-1 space-y-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-white/10 bg-black/20 text-[11px] font-extrabold tracking-dossier uppercase text-white/75">
+                  <span class="h-1.5 w-1.5 rounded-full bg-brass"></span>
+                  Positioning through presence
+                </span>
+                <span class="inline-flex items-center px-3 py-2 rounded-full border border-blood/30 bg-blood/10 text-[11px] font-extrabold tracking-dossier uppercase">
+                  Not marketing
+                </span>
+                <span class="inline-flex items-center px-3 py-2 rounded-full border border-brass/25 bg-black/10 text-[11px] font-extrabold tracking-dossier uppercase text-brass">
+                  Optional tone
+                </span>
+              </div>
+
+              <h1 class="font-cinzel uppercase tracking-cinzel font-black leading-[1.05] text-[clamp(30px,5vw,60px)]">
+                SILOVIK
+                <span class="block text-white/70 text-[clamp(16px,2vw,22px)] tracking-dossier font-extrabold mt-2">
+                  YURI • Internal Doctrine
+                </span>
+              </h1>
+
+              <p class="text-white/70 leading-relaxed text-sm sm:text-base max-w-prose">
+                This is not hype. It is normalization: visible without being pushed, mentioned without being explained,
+                present without being defended.
+              </p>
+
+              <div class="grid gap-2 sm:flex sm:flex-wrap sm:gap-3 pt-1">
+                <a href="#doctrine" class="inline-flex items-center justify-center px-4 py-3 rounded-2xl border border-blood/35 bg-blood/10 hover:bg-blood/15 font-extrabold">
+                  Read the Doctrine →
+                </a>
+                <a href="#verify" class="inline-flex items-center justify-center px-4 py-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold">
+                  Verify Contract
+                </a>
+                <a href="#rules" class="inline-flex items-center justify-center px-4 py-3 rounded-2xl border border-brass/25 bg-transparent hover:bg-white/5 font-extrabold">
+                  Engagement Rules
+                </a>
+              </div>
+
+              <div class="mt-2 border-t border-white/10 pt-4">
+                <div class="text-xs font-extrabold tracking-dossier uppercase text-white/60">Acceptable posture</div>
+                <div class="mt-2 text-sm text-brass font-extrabold tracking-[.14em] uppercase leading-relaxed">
+                  “It exists.” <span class="text-white/40">•</span> “It’s visible.” <span class="text-white/40">•</span> “Some will understand it.”
+                </div>
+                <p class="mt-3 text-xs text-white/60 leading-relaxed">
+                  No promises. No predictions. No urgency. Verify all links independently.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Logo + “stamp” -->
+            <div class="w-full lg:w-[360px]">
+              <div class="rounded-3xl border border-white/10 bg-black/20 shadow-insetGlow p-5">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Case file</div>
+                    <div class="mt-1 font-cinzel uppercase tracking-cinzel font-black text-lg">YURI</div>
+                    <div class="text-xs font-extrabold tracking-dossier text-white/60">Solana • Decimals: 7</div>
+                  </div>
+
+                  <!-- “STAMP” -->
+                  <div class="shrink-0 rotate-[-8deg]">
+                    <div class="px-3 py-2 rounded-2xl border border-blood/35 bg-blood/10 text-[11px] font-black tracking-dossier uppercase">
+                      Verified<br><span class="text-white/60 font-extrabold">By observer</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-5 flex items-center justify-center">
+                  <div class="rounded-full border border-white/15 bg-white/5 shadow-noir
+                              w-[clamp(210px,62vw,300px)] h-[clamp(210px,62vw,300px)]
+                              grid place-items-center relative overflow-hidden">
+                    <div class="absolute inset-[-12px] rounded-full bg-[radial-gradient(closest-side,rgba(199,167,106,.14),transparent_72%)] opacity-90"></div>
+                    <img src="./yuri-logo.png" alt="YURI logo"
+                      class="relative z-10 w-[clamp(140px,42vw,190px)] h-[clamp(140px,42vw,190px)] object-contain drop-shadow-[0_16px_30px_rgba(0,0,0,.60)]" />
+                  </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-3 gap-2 text-center">
+                  <div class="rounded-2xl border border-white/10 bg-white/5 py-2">
+                    <div class="text-[10px] tracking-dossier uppercase text-white/55 font-extrabold">Tone</div>
+                    <div class="text-xs font-extrabold text-white/80">Calm</div>
+                  </div>
+                  <div class="rounded-2xl border border-brass/25 bg-white/5 py-2">
+                    <div class="text-[10px] tracking-dossier uppercase text-white/55 font-extrabold">Style</div>
+                    <div class="text-xs font-extrabold text-brass">Measured</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/5 py-2">
+                    <div class="text-[10px] tracking-dossier uppercase text-white/55 font-extrabold">Posture</div>
+                    <div class="text-xs font-extrabold text-white/80">Detached</div>
+                  </div>
+                </div>
+
+                <div class="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+
+                <div class="mt-4 text-xs text-white/65 leading-relaxed">
+                  If the symbol needs defending, the posture is wrong.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCTRINE -->
+    <section id="doctrine" class="pt-10">
+      <div class="mb-4">
+        <h2 class="font-cinzel uppercase tracking-cinzel font-black text-xl">Doctrine</h2>
+        <p class="text-white/65 text-sm leading-relaxed mt-2">
+          Rephrased for clarity; intent preserved. Calm. Optional. Observational.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir p-5">
+          <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Who you are</div>
+          <h3 class="mt-2 font-cinzel uppercase tracking-cinzel font-black text-base">You are Svoi</h3>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            “Svoi” means “one of ours.” Not a title. Not a role. A recognition.
+            Svoi are not announced. They are understood.
+          </p>
+
+          <div class="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+            <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Posture</div>
+            <div class="mt-2 text-sm font-extrabold text-brass tracking-[.14em] uppercase leading-relaxed">
+              It exists. It’s visible. Some will understand it.
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir p-5">
+          <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Your function</div>
+          <h3 class="mt-2 font-cinzel uppercase tracking-cinzel font-black text-base">Normalize existence</h3>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Your task is to normalize presence, not manufacture excitement.
+            Ensure SILOVIK is visible without being pushed, mentioned without being explained,
+            present without being defended.
+          </p>
+
+          <div class="mt-4 grid gap-2 text-sm text-white/70">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+              <span class="font-extrabold text-white/90">Speak as an observer</span>, not an advocate.
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+              Reference <span class="font-extrabold text-white/90">culture, discipline, restraint, symbolism</span>. Avoid hype and urgency.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULES -->
+    <section id="rules" class="pt-10">
+      <div class="mb-4">
+        <h2 class="font-cinzel uppercase tracking-cinzel font-black text-xl">Engagement Rules</h2>
+        <p class="text-white/65 text-sm leading-relaxed mt-2">Short replies. No escalation. Skepticism is a filter.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir p-5">
+          <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Distance</div>
+          <h3 class="mt-2 font-cinzel uppercase tracking-cinzel font-black text-base">Mandatory</h3>
+          <p class="mt-2 text-white/70 text-sm leading-relaxed">
+            Do not imply access. Do not suggest coordination. Do not reference individuals.
+            If asked: <span class="font-extrabold text-white/90">“I don’t know.”</span>
+          </p>
+        </div>
+
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir p-5">
+          <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Never</div>
+          <h3 class="mt-2 font-cinzel uppercase tracking-cinzel font-black text-base">Do this</h3>
+          <ul class="mt-3 space-y-2 text-white/70 text-sm">
+            <li>• Do not sell</li>
+            <li>• Do not promise</li>
+            <li>• Do not predict</li>
+            <li>• Do not tag or spam</li>
+            <li>• Do not repeat phrasing like a script</li>
+            <li>• Do not draw attention to yourself</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-4 rounded-3xl border border-brass/25 bg-black/20 p-5">
+        <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Core principle</div>
+        <div class="mt-2 text-white/75 text-sm leading-relaxed">
+          Influence is not built by pressure. It is built by inevitability.
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFY -->
+    <section id="verify" class="pt-10 pb-10">
+      <div class="mb-4">
+        <h2 class="font-cinzel uppercase tracking-cinzel font-black text-xl">Verification</h2>
+        <p class="text-white/65 text-sm leading-relaxed mt-2">Canonical details only. No embellishment.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir p-5">
+          <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Mint address</div>
+          <h3 class="mt-2 font-cinzel uppercase tracking-cinzel font-black text-base">Copy / verify</h3>
+
+          <div class="mt-4 rounded-2xl border border-blood/25 bg-black/30 p-4">
+            <div id="mintText" class="font-mono text-xs text-white/90 leading-relaxed break-words">
+              6KNFKA6Ma3YaDzXGVwZdBmBnhfahxPEVsybBzNXiSPjc
+            </div>
+            <button id="copyBtn"
+              class="mt-3 w-full inline-flex items-center justify-center px-4 py-3 rounded-2xl border border-blood/35 bg-blood/10 hover:bg-blood/15 font-extrabold">
+              Copy Mint
+            </button>
+          </div>
+
+          <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <!-- Replace with real links -->
+            <a href="#" class="inline-flex items-center justify-center px-3 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold text-sm">Solscan</a>
+            <a href="#" class="inline-flex items-center justify-center px-3 py-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold text-sm">Dexscreener</a>
+            <a href="#" class="inline-flex items-center justify-center px-3 py-2 rounded-xl border border-brass/25 hover:bg-white/5 font-extrabold text-sm">Birdeye</a>
+          </div>
+        </div>
+
+        <div class="rounded-3xl border border-white/10 bg-white/[0.03] shadow-noir p-5">
+          <div class="text-[10px] font-extrabold tracking-dossier uppercase text-white/55">Token notes</div>
+          <h3 class="mt-2 font-cinzel uppercase tracking-cinzel font-black text-base">Solana</h3>
+
+          <div class="mt-4 grid gap-2 text-sm text-white/70">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-3 flex items-center justify-between gap-4">
+              <span class="font-extrabold text-white/90">Ticker</span>
+              <span class="font-mono text-white/85">$YURI</span>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-3 flex items-center justify-between gap-4">
+              <span class="font-extrabold text-white/90">Decimals</span>
+              <span class="font-mono text-white/85">7</span>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+              <div class="font-extrabold text-white/90">Mint</div>
+              <div class="mt-1 font-mono text-xs text-white/85 break-words">
+                6KNFKA6Ma3YaDzXGVwZdBmBnhfahxPEVsybBzNXiSPjc
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 text-white/65 text-sm leading-relaxed">
+            Provide facts. Let observers decide.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8 text-white/60">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div class="max-w-prose">
+          <div class="flex items-center gap-2">
+            <span class="font-cinzel uppercase tracking-cinzel font-black text-white/90">Silovik</span>
+            <span class="opacity-40">•</span>
+            <span class="uppercase tracking-dossier font-extrabold text-brass">Yuri</span>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed">
+            Influence is not built by pressure. It is built by inevitability.
+          </p>
+          <p class="mt-3 text-xs">© <span id="year"></span> SILOVIK (YURI). All rights reserved.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <!-- Replace with real links -->
+          <a class="px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold text-sm text-white/75" href="#">X / Twitter</a>
+          <a class="px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold text-sm text-white/75" href="#">Telegram</a>
+          <a class="px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold text-sm text-white/75" href="#">Solscan</a>
+          <a class="px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 font-extrabold text-sm text-white/75" href="#">Dexscreener</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menuPanel = document.getElementById("menuPanel");
+    menuBtn?.addEventListener("click", () => {
+      const open = !menuPanel.classList.contains("hidden");
+      menuPanel.classList.toggle("hidden", open);
+      menuBtn.setAttribute("aria-expanded", open ? "false" : "true");
+    });
+
+    // Close menu on anchor click (mobile)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", () => {
+        if (!menuPanel.classList.contains("hidden")) {
+          menuPanel.classList.add("hidden");
+          menuBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    // Copy mint
+    const copyBtn = document.getElementById("copyBtn");
+    const mintText = document.getElementById("mintText");
+    copyBtn?.addEventListener("click", async () => {
+      const txt = (mintText?.textContent || "").trim();
+      if (!txt) return;
+      try {
+        await navigator.clipboard.writeText(txt);
+        const old = copyBtn.textContent;
+        copyBtn.textContent = "Copied";
+        setTimeout(() => (copyBtn.textContent = old), 1200);
+      } catch (e) {
+        alert("Copy failed. Please copy manually.");
+      }
+    });
+  </script>
+</body>
+</html>
